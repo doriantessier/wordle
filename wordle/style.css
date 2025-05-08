@@ -1,0 +1,25 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  input {
+    font-size: 1.2em;
+    text-transform: uppercase;
+  }
+  
+  .letter {
+    font-size: 2em;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    width: 24px;
+    height: 24px;
+    margin: 2px;
+    font-size: 20px;
+  }
+  
+  .green { color: green; }
+  .orange { color: orange; }
+  .black { color: black; }
