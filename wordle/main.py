@@ -34,19 +34,22 @@ def guess(mot: str = Query(...)):
     #Lettres bien placées
     for i in range(len(secret)):
         if mot[i] == secret[i]:
-            correct.append({"letter": mot[i], "color": "green"})
+            correct.append({"lettre": mot[i], "couleur": "green"})
             used[i] = True
         else:
             correct.append(None)
 
     #Lettres mal placées
-    for i in range(len(secret)):
-        if correct[i] is None:
-            if mot[i] in secret and any(secret[j] == mot[i] and not used[j] for j in range(len(secret))):
-                correct[i] = {"letter": mot[i], "color": "orange"}
-                j = next(j for j in range(len(secret)) if secret[j] == mot[i] and not used[j])
-                used[j] = True
-            else:
-                correct[i] = {"letter": mot[i], "color": "black"}
+    for i in range(len(mot)):
+        if correct[i] is None:  # la lettre n’a pas été colorée en vert
+            found = False
+            for j in range(len(secret)):
+                if secret[j] == mot[i] and not used[j]:
+                    correct[i] = {"lettre": mot[i], "couleur": "orange"}
+                    used[j] = True
+                    found = True
+                    break
+            if not found:
+                correct[i] = {"lettre": mot[i], "couleur": "black"}
 
     return {"correct": correct}

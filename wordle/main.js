@@ -26,17 +26,17 @@ async function sendGuess() {
   }
 
   const ligne = document.createElement("div")
-  for (const letterInfo of data.correct) {
+  for (const lettreInfo of data.correct) {
     const span = document.createElement("span")
-    span.textContent = letterInfo.letter
-    span.className = `letter ${letterInfo.color}`
+    span.textContent = lettreInfo.lettre
+    span.className = `lettre ${lettreInfo.couleur}`
     ligne.appendChild(span)
   }
   document.getElementById("game").appendChild(ligne)
   input.value = ""
   essai++
 
-  const won = data.correct.every(l => l.color === "green")
+  const won = data.correct.every(l => l.couleur === "green")
   if (won) {
     document.getElementById("message").textContent = "T'as trouvé le mot, bien joué !"
     fin = true
