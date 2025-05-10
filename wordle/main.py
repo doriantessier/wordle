@@ -6,7 +6,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://127.0.0.1:5500"],
+    allow_origins=["http://127.0.0.1:5500"], #je suis passé par live server parce que je n'arrivais pas à passer par localhost8000
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -41,7 +41,7 @@ def guess(mot: str = Query(...)):
 
     #Lettres mal placées
     for i in range(len(mot)):
-        if correct[i] is None:  # la lettre n’a pas été colorée en vert
+        if correct[i] is None:  #la lettre n’a pas été colorée en vert
             found = False
             for j in range(len(secret)):
                 if secret[j] == mot[i] and not used[j]:
