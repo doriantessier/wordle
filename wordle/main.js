@@ -3,7 +3,7 @@ let nb_max = 5
 let essai = 0
 
 async function startGame() {
-  await fetch("http://127.0.0.1:8000/api/v1/wordle/new", { credentials: "include" })
+  await fetch("http://127.0.0.1:8000/api/v1/wordle/new")
   document.getElementById("game").innerHTML = ""
   document.getElementById("message").textContent = "Trouve mon mot ! Il fait 5 lettres, tu as 5 essais"
   essai = 0
@@ -15,9 +15,7 @@ async function sendGuess() {
   const input = document.getElementById("guessInput")
   const mot = input.value.trim().toUpperCase()
   if (mot.length !== 5) return
-  const res = await fetch(`http://127.0.0.1:8000/api/v1/wordle/guess?mot=${mot}`, {
-    credentials: "include"
-  })
+  const res = await fetch(`http://127.0.0.1:8000/api/v1/wordle/guess?mot=${mot}`)
   const data = await res.json()
 
   if (data.error) {
